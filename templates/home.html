@@ -1,20 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% if title %}
-        {{ title }}
-        {% else %}
-        Home :: Welcome to Fastapi Crud
-        {% endif %}
-    </title>
-</head>
+{% if posts %}
 
-<body>
-    <h1>Welcome to Fastapi templates</h1>
-</body>
-
-</html>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in posts %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td>{{ post.title }}</td>
+            <td>{{ post.content }}</td>
+            <td>
+                <button class="btn-subtle theme-primary btn-sm">Edit</button>
+                <button class="btn-subtle theme-danger btn-sm"
+                    onclick="confirm('Are you sure want to delete ?')">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h3 class="mx-auto">No Records Found</h3>
+{% endif %}
+{% endblock content %}
