@@ -3,30 +3,30 @@
 
 {% if posts %}
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for post in posts %}
-        <tr>
-            <td>{{ post.id }}</td>
-            <td>{{ post.title }}</td>
-            <td>{{ post.content }}</td>
-            <td>
-                <button class="btn-subtle theme-primary btn-sm">Edit</button>
-                <button class="btn-subtle theme-danger btn-sm"
-                    onclick="confirm('Are you sure want to delete ?')">Delete</button>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% for post in posts %}
+<section class="card mb-8 p-3 border border-subtle shadow">
+    <a class="d-flex align-items-center text-decoration-none fg-emphasis-secondary" href="#">
+
+        <div class="flex-shrink-0" style="width: 120px; height: 120px;">
+            <img src="{{ url_for('static', path='images/post-image.jpg') }}"
+                class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="Post thumbnail">
+        </div>
+
+        <div class="flex-grow-1 p-3">
+            <h4 class="card-title">{{ post.title }}</h4>
+            <p class="card-text mb-3">
+                {{ post.content }}
+            </p>
+
+            <div class="d-flex justify-content-between">
+                <span class="fs-xs fg-4 fg-50">John Miller</span>
+                <span class="fs-xs fg-4 fg-50">20, Aug 2026</span>
+            </div>
+        </div>
+    </a>
+</section>
+{% endfor %}
+
 {% else %}
 <h3 class="mx-auto">No Records Found</h3>
 {% endif %}
