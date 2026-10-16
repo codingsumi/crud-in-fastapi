@@ -61,6 +61,22 @@ def home(request: Request):
     )
 
 
+@app.get("/about")
+def about(request: Request):
+    return templates.TemplateResponse(request, "about.html", {"title": "About"})
+
+
 @app.get("/posts")
 def get_posts():
     return {"status": 200, "data": posts}
+
+
+# Authentication Routes
+@app.get("/login")
+def signin(request: Request):
+    return templates.TemplateResponse(request, "login.html", {"title": "SignIn"})
+
+
+@app.get("/register")
+def signup(request: Request):
+    return templates.TemplateResponse(request, "register.html", {"title": "Sign Up"})
